@@ -78,12 +78,19 @@ formalFlag=3的这些字段仅仅是用来防止用户填写的字段名与内�
 
 
 
-字段类型：
+字段类型： 只有varchar和numeric类型可以设置长度,只有numeric类型可以设置小数位数
 
 ```json
 {
     "String":"varchar",
-    ""
+    "Long":"bigint",
+    "Integer":"integer",
+    "Date":"date",
+    "Timestamp":"timestamp",
+    "Text":"text",
+    "Float":"float4",
+    "Double":"float8",
+    "BigDecimal":"numeric"
 }
 ```
 
