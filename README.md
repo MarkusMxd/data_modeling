@@ -18,7 +18,7 @@
 
 ​	**校验字段**：字段名称(columnName)、字段备注(columnComment)、验证规则(verifyType)、校验必填(required)、校验提示(promptMsg)
 
-​	**索引**：索引名称(idxName)、索引栏位(idxColumn)、索引类型(idxType)
+​	**索引**：索引名称(indexName)、索引栏位(indexFields)、索引类型(indexType)
 
 ​	**查询配置**：字段名称(columnName)、字段备注(columnComment)、是否查询(query)、控件类型(queryFieldType)(文本框、下拉框、时间控件)、关联类型(字典表、代码库)字段，默认值(queryDefault)、查询枚举转换器(queryEnumConverter)
 
@@ -66,7 +66,9 @@ formalFlag=3的这些字段仅仅是用来防止用户填写的字段名与内�
 
 
 
+> 注意的点：
 
+### 1.获取内置字段
 
 新增时调用获取内置字段接口，不用传type,获取的是普通模型的所有内置字段（正式表、pre表、dis表所有字段），其中formalFlag=1表示正式表的字段，需要默认填写到字段信息中，formalFlag=3表示是pre表或dis表特有的字段，不需要展示，只用来校验，用户新增字段的时候需要校验，防止填写的字段名和内置字段名重复，内置的字段名、字段备注、字段长度、小数点、默认值、字段类型不能改变
 
@@ -77,6 +79,8 @@ formalFlag=3的这些字段仅仅是用来防止用户填写的字段名与内�
 获取内置字段时type值的含义(1 普通 2树 3引用树)
 
 
+
+### 2.内置类型设置
 
 字段类型： 只有varchar和numeric类型可以设置长度,只有numeric类型可以设置小数位数
 
@@ -95,9 +99,13 @@ formalFlag=3的这些字段仅仅是用来防止用户填写的字段名与内�
 ```
 
 integer 默认字段长度10  小数点0  默认不能修改大小及小数点
+
 long 19,0  默认不能修改大小及小数点
+
 double 10,0  double和float先这样弄吧，他两其实不能限制大小 不管了
+
 float 10 ,0
+
 bigDecimal 10 , 0   这个可以编辑大小和小数点
 
 String 128,0 默认不能修改小数点
@@ -108,4 +116,23 @@ Date 0,0 默认不能修改大小及小数点
 
 Timestamp 0,0 默认不能修改大小及小数点
 
- 
+###  3.校验字段中验证规则
+
+```java
+ID_NUMBER("1", "身份证号"),
+SOCIAL_CREDIT_CODE("2", "社会信用代码"),
+UNIQUENESS_CHECK("3", "唯一性校验"),
+REGULAR_EXPRESSION("4", "正则表达式"),
+MAIL("5", "邮箱"),
+PHONE_NUMBER("6", "手机号"),
+DATABASE_VIEW("7", "自定义数据库视图"),
+WEBSITE("8", "网址"),
+LETTER("9", "字母"),
+NUMBER("10", "数字"),
+INTEGER("11", "整数"),
+NOT_EMPTY("12", "非空"),
+POSTAL_CODE("13", "邮政编码"),
+AMOUNT("14", "金额");
+```
+
+原来的系统中在模型维护中只有前六个，第7个也有，但是没有写相关逻辑，我们这里也不做展示，但是位置留着，除了7之外的这些校验规则都作为下拉选择项
