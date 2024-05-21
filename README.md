@@ -208,3 +208,10 @@ queryCodeRefType 关联类型名称
 queryCodeRefTypes 关联类型编码串
 ```
 
+
+
+
+
+### 操作按钮：
+
+编辑、同步数据库（syncStatus=0的时候显示）、下载代码、在线编译、初始化业务数据（isInitialized=0的时候显示）、同步配置项、复制模型、移除模型、删除模型
