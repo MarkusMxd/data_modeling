@@ -128,13 +128,14 @@ REGULAR_EXPRESSION("4", "正则表达式"),
 MAIL("5", "邮箱"),
 PHONE_NUMBER("6", "手机号"),
 DATABASE_VIEW("7", "自定义数据库视图"),
-WEBSITE("8", "网址"),
-LETTER("9", "字母"),
-NUMBER("10", "数字"),
-INTEGER("11", "整数"),
-NOT_EMPTY("12", "非空"),
-POSTAL_CODE("13", "邮政编码"),
-AMOUNT("14", "金额");
+CUSTOMIZED_UNIQUE_CHECK("8", "自定义唯一性校验"),
+WEBSITE("9", "网址"),
+LETTER("10", "字母"),
+NUMBER("11", "数字"),
+INTEGER("12", "整数"),
+NOT_EMPTY("13", "非空"),
+POSTAL_CODE("14", "邮政编码"),
+AMOUNT("15", "金额");
 ```
 
 原来的系统中在模型维护中只有前六个，第7个也有，但是没有写相关逻辑，我们这里也不做展示，但是位置留着，除了7之外的这些校验规则都作为下拉选择项
