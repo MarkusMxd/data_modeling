@@ -236,3 +236,89 @@ queryCodeRefTypes 关联类型编码串
 9. 删除模型：弹框提示标题：确认彻底删除该模型吗？  提示信息：删除配置信息的同时将删除数据库物理表 
 
 10. 批量删除：参考jeecgBoot中的，一模一样，不理解cell我
+
+
+
+### 新增部分逻辑：
+
+1.选择附表时增加两个选项：关联主表字段(refPrimaryField),下拉框为列表`新增的自定义`所有字段,就是columnType=1的，或者下拉展示列表中所有字段也行、附表顺序(refRank) 数字输入框
+
+2.模型维护查询：主表附表分开查询，增加下拉框fieldProperty(主表0、附表1)、选择附表弹出附表下拉框fieldPropertyName
+
+3.模型维护加了一列：校验提示
+
+4.验证规则：
+
+唯一性校验：verifyType="3"、promptMsg: "唯一性校验提示"
+
+正则表达式：verifyType="4"、verifyRegex: "正则表达式"
+
+自定义唯一校验：verifyType: "8"、customUniqueRegex:"自定义唯一校验提示信息"
+
+5.页面属性中的表单组件：
+
+基础字段信息：`"fieldType": "SelectList"`
+
+> json中的字段时模型维护中传的字段，json后面跟的字段时动态建模传的字段，有些字段名称一样，有些不一样
+
+①下拉选择：
+
+```json
+字典表\代码库
+{
+  "refDataType": "字典表\代码库",							sysCodeRefType
+  "refTypeName": "视图类型",		  					  sysCodeType
+  "refTypesId": 19576									sysCodeTypes
+}
+主数据
+{
+    "refDataType": "主数据",											sysCodeRefType
+    "refTypesId": "员工管理",模型维护传错了，应该是refTypeName   			sysCodeType
+    "refTypesId": "code",	这块不清楚为什么传code,应该是默认根据code关联	  sysCodeTypes
+    "associateShowFields": "pname,property"					  		  associateShowFields
+}
+自定义视图
+{
+    "refDataType": "自定义视图",								sysCodeRefType
+  	"refTypeName": "自定义视图名称",						   sysCodeType
+    "refTypesMappingName": "关联视图字段名称",				  refTypesMappingName
+    "isContain": "in\not in  包含关系"						 isContain
+}
+国家标准
+{
+    "refDataType": "国家标准"								sysCodeRefType
+}
+```
+
+②时间范围：模型维护有问题，选择不了结束字段
+
+```json
+{
+    "associateTimeField":"结束时间字段"						associateTimeField
+}
+```
+
+
+
+6.查询配置：
+
+组件类型：只有文本框、下拉选择、时间范围 和查询配置中一模一样
+
+关联类型：自定义枚举转换器、关联字典表、关联代码库
+
+```json
+自定义枚举转换器
+{
+    "isSysCodeRef":"0 自定义枚举转换器",
+    "options":"自定义枚举转换器"						queryEnumConverter
+}
+
+{
+    "isSysCodeRef":"0 自定义枚举转换器 1字典表 2代码库",			queryCodeRef
+    "sysCodeRefType":"视图类型",							   queryCodeRefType
+    "sysCodeRefTypes":"19576"								  queryCodeRefTypes
+}
+```
+
+
+
