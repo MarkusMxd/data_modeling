@@ -241,19 +241,21 @@ queryCodeRefTypes 关联类型编码串
 
 ### 新增部分逻辑：
 
-1.选择附表时增加两个选项：关联主表字段(refPrimaryField),下拉框为列表`新增的自定义`所有字段,就是columnType=1的，或者下拉展示列表中所有字段也行、附表顺序(refRank) 数字输入框
+`校验提示的字段名(promptMsg) 改为(formCheckMsg)`
 
-2.模型维护查询：主表附表分开查询，增加下拉框fieldProperty(主表0、附表1)、选择附表弹出附表下拉框fieldPropertyName
+1.选择附表时增加两个选项：关联主表字段(`refPrimaryField`),下拉框为列表`新增的自定义`所有字段,就是columnType=1的，或者下拉展示列表中所有字段也行、附表顺序(`refRank`) 数字输入框
 
-3.模型维护加了一列：校验提示
+2.模型维护查询：主表附表分开查询，增加下拉框`fieldProperty`(主表0、附表1)、选择附表弹出附表下拉框`fieldPropertyName`
 
-4.验证规则：
+3.模型维护加了一列：校验提示（formCheckMsg）
 
-唯一性校验：verifyType="3"、promptMsg: "唯一性校验提示"
+4.验证规则：黑字表示模型维护中的字段，红色字体表示建模当中的字段
 
-正则表达式：verifyType="4"、verifyRegex: "正则表达式"
+唯一性校验：verifyType="3"、promptMsg: "唯一性校验提示"		`promptMsg`
 
-自定义唯一校验：verifyType: "8"、customUniqueRegex:"自定义唯一校验提示信息"
+正则表达式：verifyType="4"、verifyRegex: "正则表达式"          		`verifyRegex`
+
+自定义唯一校验：verifyType: "8"、customUniqueRegex:"自定义唯一校验正则表达式"   `customUniqueRegex`
 
 5.页面属性中的表单组件：
 
@@ -309,7 +311,7 @@ queryCodeRefTypes 关联类型编码串
 ```json
 自定义枚举转换器
 {
-    "isSysCodeRef":"0 自定义枚举转换器",
+    "isSysCodeRef":"0 自定义枚举转换器",				queryCodeRef
     "options":"自定义枚举转换器"						queryEnumConverter
 }
 
@@ -319,6 +321,4 @@ queryCodeRefTypes 关联类型编码串
     "sysCodeRefTypes":"19576"								  queryCodeRefTypes
 }
 ```
-
-
 
